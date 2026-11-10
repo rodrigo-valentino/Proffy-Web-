@@ -1,5 +1,6 @@
 package com.rafael.proffy.ui.finallyComponent
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.rafael.proffy.R
 import com.rafael.proffy.databinding.ActivityFinallyBinding
+import com.rafael.proffy.ui.login.LoginActivity
 
 class FinallyActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFinallyBinding
@@ -22,6 +24,24 @@ class FinallyActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        val title = intent.getStringExtra("TITLE")
+        val subtitle = intent.getStringExtra("SUBTITLE")
+
+        if (title != null) {
+            binding.textViewTitleFinally.text = title
+        }
+        if (subtitle != null) {
+            binding.textViewSubtitle.text = subtitle
+        }
+
+        binding.buttonGoToLogin.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(intent)
+            finish()
         }
     }
 }

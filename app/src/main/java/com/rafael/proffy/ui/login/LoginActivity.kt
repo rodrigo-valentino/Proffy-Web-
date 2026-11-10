@@ -28,9 +28,15 @@ class LoginActivity : AppCompatActivity() {
         }
 
         val buttonRegister = binding.buttonRegister
+        val buttonForgot = binding.buttonForgot
 
         buttonRegister.setOnClickListener {
             handleRegister()
+        }
+
+        buttonForgot.setOnClickListener {
+            val intent = Intent(this, com.rafael.proffy.ui.forgotpassword.ForgotPasswordActivity::class.java)
+            startActivity(intent)
         }
     }
 
